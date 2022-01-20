@@ -48,6 +48,10 @@ inputs:
     description: '[Optional] The directory to wipe and replace in the target repository'
     default: ''
     required: false
+  github-api-token:
+    description: 'API Token'
+    default: ''
+    required: false
         
 runs:
   using: docker
@@ -64,6 +68,7 @@ runs:
     - '${{ inputs.target-branch }}'
     - '${{ inputs.commit-message }}'
     - '${{ inputs.target-directory }}'
+    - '${{ inputs.github-api-token }}'
 branding:
   icon: git-commit
   color: green
