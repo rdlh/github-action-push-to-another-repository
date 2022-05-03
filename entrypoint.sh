@@ -4,15 +4,15 @@ set -e  # if a command fails it stops the execution
 set -u  # script fails if trying to access to an undefined variable
 
 echo "[+] Action start"
-SOURCE_BEFORE_DIRECTORY="$1"
-SOURCE_DIRECTORY="$2"
-DESTINATION_GITHUB_USERNAME="$3"
-DESTINATION_REPOSITORY_NAME="$4"
-GITHUB_SERVER="$5"
-USER_EMAIL="$6"
-USER_NAME="$7"
-DESTINATION_REPOSITORY_USERNAME="$8"
-TARGET_BRANCH="$9"
+SOURCE_BEFORE_DIRECTORY="${1}"
+SOURCE_DIRECTORY="${2}"
+DESTINATION_GITHUB_USERNAME="${3}"
+DESTINATION_REPOSITORY_NAME="${4}"
+GITHUB_SERVER="${5}"
+USER_EMAIL="${6}"
+USER_NAME="${7}"
+DESTINATION_REPOSITORY_USERNAME="${8}"
+TARGET_BRANCH="${9}"
 COMMIT_MESSAGE="${10}"
 TARGET_DIRECTORY="${11}"
 API_TOKEN_GITHUB="${12}"
@@ -28,6 +28,9 @@ then
 fi
 
 CLONE_DIR=$(mktemp -d)
+
+echo "[+] Git version"
+git --version
 
 echo "[+] Cloning destination git repository $DESTINATION_REPOSITORY_NAME"
 # Setup git
@@ -97,6 +100,11 @@ ls -la
 ORIGIN_COMMIT="https://$GITHUB_SERVER/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
 COMMIT_MESSAGE="${COMMIT_MESSAGE/ORIGIN_COMMIT/$ORIGIN_COMMIT}"
 COMMIT_MESSAGE="${COMMIT_MESSAGE/\$GITHUB_REF/$GITHUB_REF}"
+
+echo "[+] Set directory is safe ($CLONE_DIR)"
+# Related to https://github.com/cpina/github-action-push-to-another-repository/issues/64 and https://github.com/cpina/github-action-push-to-another-repository/issues/64
+# TODO: review before releasing it as a version
+git config --global --add safe.directory "$CLONE_DIR"
 
 echo "[+] Adding git commit"
 git add . &> /dev/null
