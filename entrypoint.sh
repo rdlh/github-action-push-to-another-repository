@@ -99,7 +99,7 @@ COMMIT_MESSAGE="${COMMIT_MESSAGE/ORIGIN_COMMIT/$ORIGIN_COMMIT}"
 COMMIT_MESSAGE="${COMMIT_MESSAGE/\$GITHUB_REF/$GITHUB_REF}"
 
 echo "[+] Adding git commit"
-git add .
+git add . &> /dev/null
 
 echo "[+] git status:"
 git status &> /dev/null
