@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:edge
 
 RUN apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main git
 
