@@ -35,8 +35,8 @@ git --version
 apk upgrade
 echo "[+] Locate"
 
-sudo rm /usr/lib/libcurl.so.4
-sudo ln -s /usr/lib/libcurl.so.4.8.0 /usr/lib/libcurl.so.4
+rm /usr/lib/libcurl.so.4
+ln -s /usr/lib/libcurl.so.4.8.0 /usr/lib/libcurl.so.4
 
 echo "[+] Cloning destination git repository $DESTINATION_REPOSITORY_NAME"
 # Setup git
