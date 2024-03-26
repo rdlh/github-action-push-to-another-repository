@@ -32,6 +32,14 @@ CLONE_DIR=$(mktemp -d)
 echo "[+] Git version"
 git --version
 
+curl
+
+apk upgrade
+
+curl
+
+locate libcurl.so.4
+
 echo "[+] Cloning destination git repository $DESTINATION_REPOSITORY_NAME"
 # Setup git
 git config --global user.email "$USER_EMAIL"
