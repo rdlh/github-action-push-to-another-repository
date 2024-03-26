@@ -34,6 +34,11 @@ git --version
 
 apk upgrade
 echo "[+] Locate"
+
+apk add mlocate
+
+updatedb
+
 locate libcurl.so.4
 
 echo "[+] Cloning destination git repository $DESTINATION_REPOSITORY_NAME"
